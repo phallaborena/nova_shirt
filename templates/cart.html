@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block content %}
+<h2 class="title">Your Cart</h2>
+{% if items %}
+<table class="cart-table">
+  <thead><tr><th>Item</th><th>Price</th><th>Qty</th><th>Total</th><th></th></tr></thead>
+  <tbody>
+    {% for it in items %}
+    <tr>
+      <td>{{ it.product.name }}</td>
+      <td>${{ '%.2f'|format(it.product.price) }}</td>
+      <td>
+        <form action="{{ url_for('cart_update') }}" method="post" class="inline">
+          <input type="hidden" name="pid" value="{{ it.product.id }}">
+          <input type="number" name="qty" min="1" value="{{ it.qty }}">
+          <button class="btn small">Update</button>
+        </form>
+      </td>
+      <td>${{ '%.2f'|format(it.line_total) }}</td>
+      <td>
+        <form action="{{ url_for('cart_remove') }}" method="post" class="inline">
+          <input type="hidden" name="pid" value="{{ it.product.id }}">
+          <button class="btn danger small">Remove</button>
+        </form>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+<div class="cart-total">
+  <a class="btn primary" href="{{ url_for('checkout') }}">Proceed to Payment</a>
+</div>
+{% else %}
+  <p>Your cart is empty.</p>
+{% endif %}
+{% endblock %}
