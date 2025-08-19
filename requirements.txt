@@ -1,0 +1,10 @@
+Flask==3.0.3
+Flask-Mail==0.9.1
+requests==2.32.3
+gunicorn==21.2.0
+Pillow==10.4.0
+
+Flask
+gunicorn
+python-telegram-bot==13.15
+
