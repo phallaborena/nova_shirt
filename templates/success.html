@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="hero">
+  <h1>Thank you!</h1>
+  <p>Your order <strong>{{ order_id }}</strong> has been placed successfully.</p>
+  <p>Telegram notification: <strong>{{ telegram_status }}</strong> — Email: <strong>{{ email_status }}</strong></p>
+  <a class="btn" href="{{ url_for('home') }}">Back to Home</a>
+</section>
+{% endblock %}
